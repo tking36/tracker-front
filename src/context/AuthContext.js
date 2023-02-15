@@ -4,6 +4,8 @@ import tracker from "../api/tracker";
 
 
 
+
+
 const authReducer = (state, action) => {
     switch (action.type) {
       case 'add_error':
@@ -19,12 +21,10 @@ const authReducer = (state, action) => {
     }
   };
 
-const tryLocalSignin = (dispatch) => async () => {
+  const tryLocalSignin = (dispatch) => async () => {
     const token = await AsyncStorage.getItem('token')
     if (token) {
         dispatch({type: 'signin', payload: token})
-    } else {
-        navigate('SignupScreen')
     }
 }
 
@@ -59,9 +59,9 @@ const signin = (dispatch) => async ({ email, password }) => {
 
 
     const signout = (dispatch) => async () => {
-        await AsyncStorage.clear();
-        dispatch({ type: 'signout' });
-      };
+        await AsyncStorage.removeItem('token')
+        dispatch({type: 'signout'})
+    };
 
 export const {Provider, Context} = createDataContext(
     authReducer,

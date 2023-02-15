@@ -26,7 +26,7 @@ const Bottom = createBottomTabNavigator();
  
 const LoginFlow = () => {
   return (
-    <Stack.Navigator initialRouteName="tryLocalSignin">
+    <Stack.Navigator initialRouteName="ResolveAuthScreen">
       <Stack.Screen component={ResolveAuthScreen} name="ResolveAuthScreen" options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen component={SigninScreen} name="SigninScreen" options={{ headerShown: false }}></Stack.Screen>
       <Stack.Screen component={SignupScreen} name="SignupScreen" options={{ headerShown: false }}></Stack.Screen>
@@ -57,7 +57,7 @@ const OverAll = () => {
   return (
     <AuthContext.Consumer>
       {context => (
-        <Stack.Navigator initialRouteName="SigninScreen">
+        <Stack.Navigator initialRouteName="ResolveAuthScreen">
           {context.state.token ? (
             <Stack.Screen component={MainFlow} name="MainFlow" options={{ headerShown: false }} />
           ) : (

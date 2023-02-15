@@ -8,7 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const SigninScreen = () => {
 
-    const {state, signin, clearErrorMessage} = useContext(AuthContext);
+    const {state, signin, clearErrorMessage, tryLocalSignin} = useContext(AuthContext);
 
     useFocusEffect(
         React.useCallback(() => {
@@ -17,6 +17,10 @@ const SigninScreen = () => {
             };
         }, [])
     );
+
+    useEffect (() => {
+        tryLocalSignin();
+    }, []);
 
     return (
       <View style={styles.container}>
