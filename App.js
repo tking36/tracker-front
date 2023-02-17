@@ -16,6 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
+import {Provider as LocationProvider} from './src/context/LocationContext';
  
 const Stack = createNativeStackNavigator();
 const TrackStack = createNativeStackNavigator();
@@ -47,8 +48,8 @@ const MainFlow = () => {
   return (
     <Bottom.Navigator>
       <Bottom.Screen component={TrackListFlow} name="TrackListFlow" options={{ headerShown: false }}></Bottom.Screen>
-      <Bottom.Screen component={AccountScreen} options={{ headerShown: false }} name="AccountScreen"></Bottom.Screen>
       <Bottom.Screen component={TrackCreateScreen} options={{ headerShown: false }} name="TrackCreateScreen"></Bottom.Screen>
+      <Bottom.Screen component={AccountScreen} options={{ headerShown: false }} name="AccountScreen"></Bottom.Screen>
     </Bottom.Navigator>
   );
 };
@@ -72,9 +73,11 @@ const OverAll = () => {
 export default function App() {
   return (
     <NavigationContainer ref={navigator => setNavigator(navigator)}>
-      <AuthProvider>
-      {OverAll()}
-      </AuthProvider>
+      <LocationProvider>
+        <AuthProvider>
+        {OverAll()}
+        </AuthProvider>
+      </LocationProvider>
     </NavigationContainer>
   );
 }
