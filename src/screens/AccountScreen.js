@@ -13,11 +13,20 @@ const AccountScreen = ({navigation}) => {
     return (
         <SafeAreaView forceInset={{top: 'always'}}>
         <Spacer />
-        <Button title="Sign Out" onPress={() => {signout()}}></Button>
+        <Button style={styles.logout} title="Sign Out" onPress={() => {signout()}}></Button>
         </SafeAreaView>
     );
     }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    logout: {
+        marginTop: 300,
+        paddingTop: 20,
+        paddingBottom: 20,
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+});
 
 export default AccountScreen;
